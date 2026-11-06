@@ -1,0 +1,213 @@
+/* ==========================================================================
+   TAIPINGAI 太平人 · AITAIPING 爱太平
+   Custom Stylesheet — Taiping Rain Tree Emerald & Warm Amber Gold Theme
+   ========================================================================== */
+
+:root {
+  --emerald-deep: #053b2c;
+  --emerald-primary: #064e3b;
+  --emerald-mid: #047857;
+  --emerald-light: #10b981;
+  --emerald-tint: #ecfdf5;
+  --amber-warm: #f59e0b;
+  --amber-deep: #d97706;
+  --amber-soft: #fef3c7;
+  --cream-bg: #f8faf7;
+  --card-bg: #ffffff;
+}
+
+/* Smooth scrolling & base typography */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: var(--cream-bg);
+  color: #1e293b;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Elder-Friendly Large Text Mode (长辈大字模式) */
+html.elder-mode {
+  font-size: 118%;
+}
+
+html.elder-mode .elder-scale-text {
+  font-size: 1.15em !important;
+  line-height: 1.65 !important;
+}
+
+html.elder-mode .elder-btn {
+  padding-top: 0.9rem !important;
+  padding-bottom: 0.9rem !important;
+  font-weight: 700 !important;
+}
+
+/* Rain Tree Canopy Hero Background Pattern */
+.raintree-hero-bg {
+  background: 
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0) 45%),
+    radial-gradient(circle at 12% 80%, rgba(16, 185, 129, 0.20) 0%, rgba(16, 185, 129, 0) 50%),
+    linear-gradient(145deg, #043927 0%, #064e3b 52%, #065f46 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.raintree-hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Subtle Taiping Rain effect animation in Hero */
+.rain-streak {
+  position: absolute;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(254, 243, 199, 0.28), rgba(255, 255, 255, 0));
+  animation: rainfall 4.5s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes rainfall {
+  0% {
+    transform: translateY(-80px) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(460px) translateX(-12px);
+    opacity: 0;
+  }
+}
+
+/* Amber Glow Pulse for Primary Call-To-Action & AI Status */
+@keyframes amberPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+}
+
+.amber-pulse {
+  animation: amberPulse 2.4s infinite;
+}
+
+/* Voice Recording Wave Animation */
+@keyframes voiceWave {
+  0%, 100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1.15);
+  }
+}
+
+.voice-bar {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin: 0 1.5px;
+  background-color: #d97706;
+  border-radius: 999px;
+  animation: voiceWave 0.7s infinite ease-in-out;
+}
+
+.voice-bar:nth-child(2) { animation-delay: 0.15s; }
+.voice-bar:nth-child(3) { animation-delay: 0.3s; }
+.voice-bar:nth-child(4) { animation-delay: 0.45s; }
+
+/* Capsule Selection Active States */
+.pain-capsule {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pain-capsule:hover {
+  transform: translateY(-2px);
+}
+
+.pain-capsule.active {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #f59e0b;
+  box-shadow: 0 10px 20px -5px rgba(6, 78, 59, 0.32), 0 0 0 2px #f59e0b;
+}
+
+.pain-capsule.active .capsule-sub {
+  color: #fde68a;
+}
+
+.pain-capsule.active .capsule-badge {
+  background-color: rgba(245, 158, 11, 0.25);
+  color: #fef3c7;
+  border-color: rgba(254, 243, 199, 0.4);
+}
+
+/* Sifu Card Hover & Seal Stamp Styling */
+.sifu-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sifu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px -12px rgba(6, 78, 59, 0.14);
+}
+
+/* Traditional Taiping Red/Amber Guarantee Stamp */
+.taiping-stamp {
+  border: 2px solid rgba(217, 119, 6, 0.45);
+  color: #b45309;
+  background: rgba(254, 243, 199, 0.55);
+  transform: rotate(-3deg);
+  letter-spacing: 0.05em;
+}
+
+/* Custom Scrollbar for horizontal pill bars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modal Backdrop Animation */
+.modal-backdrop {
+  background-color: rgba(4, 35, 26, 0.68);
+  backdrop-filter: blur(5px);
+  transition: opacity 0.25s ease;
+}
+
+/* AI Scan Shimmer Effect */
+@keyframes scanLine {
+  0% {
+    top: 0%;
+    opacity: 0.85;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.85;
+  }
+}
+
+.ai-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f59e0b, #10b981, transparent);
+  box-shadow: 0 0 12px #f59e0b;
+  animation: scanLine 1.6s infinite ease-in-out;
+}
