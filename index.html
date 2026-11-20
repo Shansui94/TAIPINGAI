@@ -2,620 +2,317 @@
 <html lang="zh-MY">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>TAIPINGAI 太平人 · AITAIPING 爱太平 | 太平社区AI水电家居维护与匠人公道榜</title>
-  <meta name="description" content="马来西亚霹雳州太平（Taiping, Perak）社区家居维护与认证匠人评级平台。AI秒算太平公道价、防砍菜头、30天官方保修、游子远程代父母叫师傅、3D打印复活老屋绝版零件。" />
-
-  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans SC -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TAIPINGAI 太平人 · AITAIPING 爱太平 | 太平水电家居公道榜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            raintree: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              600: '#059669',
-              700: '#047857',
-              800: '#065f46',
-              900: '#064e3b',
-              950: '#032b21'
-            }
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="min-h-screen flex flex-col selection:bg-amber-400 selection:text-emerald-950">
+<body class="min-h-screen flex flex-col">
 
   <!-- =====================================================================
-       TOP REAL-TIME TAIPING TRUST STATUS BAR (实时太平社区信任状态栏)
+       极简顶部导航栏
        ===================================================================== -->
-  <div class="bg-emerald-950 text-emerald-100 border-b border-emerald-800/80 text-xs">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2 flex flex-col lg:flex-row items-center justify-between gap-2">
-      <!-- Live Neighborhood Order Ticker -->
-      <div class="flex items-center gap-2 w-full lg:w-auto overflow-hidden">
-        <span class="inline-flex items-center gap-1 bg-amber-500 text-emerald-950 font-extrabold px-2 py-0.5 rounded text-[11px] shrink-0">
-          ⚡ 太平街坊实时动态
-        </span>
-        <p id="live-trust-ticker" class="truncate text-amber-200 font-medium transition-opacity duration-300">
-          🟢 3分钟前 · 保阁亚三林阿姨 预约了【陈 Uncle】检修屋顶Tangki漏水（AI公道价 RM65）
-        </p>
-      </div>
-
-      <!-- Real-time Trust Metrics -->
-      <div class="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 w-full lg:w-auto text-[11px] sm:text-xs border-t lg:border-t-0 border-emerald-800/60 pt-1.5 lg:pt-0">
-        <span>🪪 认证太平老街坊师傅：<strong id="stat-sifu-count" class="text-amber-400 font-extrabold">28</strong> 位</span>
-        <span>🔧 今日已解决漏水/跳电：<strong id="stat-jobs-today" class="text-amber-400 font-extrabold">43</strong> 单</span>
-        <span class="hidden sm:inline">💰 累计帮街坊省下冤枉钱：<strong id="stat-saved-rm" class="text-amber-400 font-extrabold">RM 18,650</strong>+</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- =====================================================================
-       STICKY NAVIGATION HEADER (顶部品牌双关导航栏 + 长辈大字模式切换)
-       ===================================================================== -->
-  <header class="sticky top-0 z-40 bg-emerald-900/95 backdrop-blur-md border-b border-emerald-700/60 text-white shadow-md">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
-      <!-- Dual Brand Pun Logo -->
-      <a href="#" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 text-emerald-950 flex flex-col items-center justify-center font-black shadow-md group-hover:scale-105 transition-transform shrink-0">
-          <span class="text-xs leading-none tracking-tighter">AI</span>
-          <span class="text-[11px] leading-none font-extrabold mt-0.5">太平</span>
+  <header class="sticky top-0 z-40 bg-[#053b2c]/95 backdrop-blur-md text-white border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-amber-400 text-emerald-950 font-black text-xs flex items-center justify-center">
+          AI
         </div>
-        <div>
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="font-black text-base sm:text-lg tracking-tight text-white">TAIPING<span class="text-amber-400">AI</span></span>
-            <span class="text-xs bg-emerald-800 text-amber-200 px-1.5 py-0.5 rounded font-bold border border-emerald-600">太平人</span>
-            <span class="text-amber-400/70 font-bold">×</span>
-            <span class="font-black text-base sm:text-lg tracking-tight text-amber-300">AI<span class="text-white">TAIPING</span></span>
-            <span class="text-xs bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-400/40">爱太平</span>
-          </div>
-          <p class="text-[11px] text-emerald-200 hidden sm:block">
-            既是 <strong class="text-white">AI Taiping (智能太平)</strong> · 也是 <strong class="text-amber-300">爱太平 (Love Taiping)</strong>
-          </p>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-extrabold text-sm sm:text-base tracking-tight">TAIPING<span class="text-amber-400">AI</span> 太平人</span>
+          <span class="text-white/30">·</span>
+          <span class="font-bold text-xs sm:text-sm text-amber-300">AITAIPING 爱太平</span>
         </div>
       </a>
 
-      <!-- Quick Section Links (Desktop) -->
-      <nav class="hidden md:flex items-center gap-5 text-xs lg:text-sm font-bold text-emerald-100">
-        <a href="#module-ai-diagnostic" class="hover:text-amber-300 transition-colors">🤖 AI秒估公道价</a>
-        <a href="#module-sifu-directory" class="hover:text-amber-300 transition-colors">🏆 太平匠人红榜</a>
-        <a href="#module-filial-and-3d" class="hover:text-amber-300 transition-colors">💝 游子孝心通道</a>
-        <a href="#module-3d-lab" class="hover:text-amber-300 transition-colors">🖨️ 3D打印救老件</a>
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-emerald-100">
+        <a href="#ai-box" class="hover:text-amber-300">AI算公道价</a>
+        <a href="#sifu-section" class="hover:text-amber-300">认证师傅红榜</a>
+        <a href="#moat-section" class="hover:text-amber-300">游子代订 & 3D老零件</a>
       </nav>
 
-      <!-- Utility Controls: Elder Large-Text Mode & Official Concierge -->
       <div class="flex items-center gap-2">
         <button
-          id="elder-mode-btn"
+          id="elder-btn"
           type="button"
           onclick="toggleElderMode()"
-          class="bg-emerald-800/80 hover:bg-emerald-700 text-amber-200 border border-amber-400/40 text-xs font-extrabold px-2.5 sm:px-3 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-1"
-          title="切换长辈清晰大字模式"
+          class="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-white hover:bg-white/20 cursor-pointer"
         >
-          <span id="elder-mode-label">👓 长辈大字模式</span>
-        </button>
-
-        <button
-          type="button"
-          onclick="openBookingModal('auto', false)"
-          class="bg-amber-400 hover:bg-amber-300 text-emerald-950 font-extrabold text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-xl shadow cursor-pointer flex items-center gap-1 shrink-0"
-        >
-          <span>📲 呼叫师傅</span>
+          👓 长辈大字
         </button>
       </div>
     </div>
   </header>
 
   <!-- =====================================================================
-       MODULE 1: HERO SECTION & 品牌双关视觉 (Taiping Rain Tree Emerald + Warm Amber)
+       1. HERO SECTION（极简、清晰、有温度）
        ===================================================================== -->
-  <section class="raintree-hero-bg text-white pt-6 pb-14 sm:py-12 border-b-4 border-amber-400">
-    <!-- Subtle Taiping Rain Streaks -->
-    <div class="rain-streak" style="left: 12%; animation-delay: 0.2s;"></div>
-    <div class="rain-streak" style="left: 34%; animation-delay: 1.5s;"></div>
-    <div class="rain-streak" style="left: 68%; animation-delay: 0.8s;"></div>
-    <div class="rain-streak" style="left: 88%; animation-delay: 2.3s;"></div>
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        <!-- Left Column: Brand Narrative -->
-        <div class="lg:col-span-7 space-y-4">
-          <div class="inline-flex flex-wrap items-center gap-2 bg-white/10 backdrop-blur-sm border border-amber-400/40 rounded-full px-3.5 py-1.5 text-xs sm:text-sm">
-            <span class="text-amber-300 font-extrabold">🌳 霹雳太平雨城社区守护计划</span>
-            <span class="text-emerald-200">|</span>
-            <span class="text-emerald-100">后廊 · 保阁亚三 · 甘文丁 · 新邦 · 太平市区</span>
-          </div>
-
-          <h1 class="text-2xl sm:text-4xl lg:text-[42px] font-black leading-tight tracking-tight">
-            我们是 <span class="text-amber-400 underline decoration-amber-400/50 decoration-wavy underline-offset-4">TAIPINGAI 太平人</span>，<br />
-            用 AI 守护我们最爱的 <span class="bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">AITAIPING 爱太平</span>。
-          </h1>
-
-          <p class="text-sm sm:text-base text-emerald-100 leading-relaxed max-w-2xl elder-scale-text">
-            家里雨天跳电、水箱漏水找不到老实师傅？爸妈独居太平怕被外人“砍菜头”乱开价？阿公留下的老风扇断了旋钮买不到零件？
-            <strong class="text-amber-300">先用 AI 算准太平街坊公道价，再叫实名认证的太平老师傅上门！</strong>
-          </p>
-
-          <!-- 4 Core Value Pills -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
-            <div class="bg-white/10 border border-white/15 rounded-xl p-2.5">
-              <div class="text-amber-400 font-extrabold text-xs sm:text-sm">🤖 AI 秒算公道价</div>
-              <div class="text-[11px] text-emerald-100 mt-0.5">透明RM区间·拒绝砍菜头</div>
-            </div>
-            <div class="bg-white/10 border border-white/15 rounded-xl p-2.5">
-              <div class="text-amber-400 font-extrabold text-xs sm:text-sm">🪪 老街坊实名认证</div>
-              <div class="text-[11px] text-emerald-100 mt-0.5">知根知底·通晓福建/华语</div>
-            </div>
-            <div class="bg-white/10 border border-white/15 rounded-xl p-2.5">
-              <div class="text-amber-400 font-extrabold text-xs sm:text-sm">💝 游子视频验收</div>
-              <div class="text-[11px] text-emerald-100 mt-0.5">不收长辈现金·修好才过账</div>
-            </div>
-            <div class="bg-white/10 border border-white/15 rounded-xl p-2.5">
-              <div class="text-amber-400 font-extrabold text-xs sm:text-sm">🖨️ 3D打印救老件</div>
-              <div class="text-[11px] text-emerald-100 mt-0.5">配绝版零件·免整套换新</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Brand Dual-Pun Cultural Badge Card -->
-        <div class="lg:col-span-5">
-          <div class="bg-emerald-950/80 backdrop-blur-md border-2 border-amber-400/50 rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3">
-            <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
-              <div>
-                <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">为什么叫 TAIPINGAI · AITAIPING？</span>
-                <h2 class="text-base sm:text-lg font-extrabold text-white mt-0.5">一句福建话“太平人”，一份游子乡愁</h2>
-              </div>
-              <span class="text-2xl">🌧️🏡</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-              <div class="bg-white/5 p-3 rounded-xl border border-white/10">
-                <div class="font-extrabold text-amber-300 text-sm">TAIPING·AI (太平人)</div>
-                <p class="text-emerald-100 mt-1 leading-relaxed">
-                  谐音福建话<strong>“太平人 (Taiping-lang)”</strong>。每一位入驻师傅都是街坊认识十几年、口碑过硬的自己人。
-                </p>
-              </div>
-              <div class="bg-white/5 p-3 rounded-xl border border-white/10">
-                <div class="font-extrabold text-amber-300 text-sm">AI·TAIPING (爱太平)</div>
-                <p class="text-emerald-100 mt-1 leading-relaxed">
-                  用现代 <strong>AI 视觉估价与 3D 打印技术</strong>，帮远在 KL、新加坡、槟城的儿女守护留在太平老家的父母。
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between bg-amber-400/15 border border-amber-400/40 rounded-xl px-3.5 py-2 text-xs text-amber-200">
-              <span>🛡️ 平台铁律：师傅未报价先动手，平台双倍赔付！</span>
-              <a href="#module-sifu-directory" class="underline font-bold text-amber-300 shrink-0 ml-2">看红榜师傅 →</a>
-            </div>
-          </div>
-        </div>
+  <section class="hero-surface text-white pt-10 pb-20 px-4">
+    <div class="max-w-3xl mx-auto text-center space-y-4">
+      <!-- 实时信任胶囊 -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-xs text-emerald-100">
+        <span>🪪 已认证太平老街坊师傅 <strong class="text-amber-300">28</strong> 位</span>
+        <span class="text-white/30">|</span>
+        <span>🔧 今日已解决漏水跳电 <strong id="jobs-today-count" class="text-amber-300">43</strong> 单</span>
+        <span class="text-white/30 hidden sm:inline">|</span>
+        <span class="hidden sm:inline">🛡️ 平台 30 天官方保修</span>
       </div>
+
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-snug">
+        既是 <span class="text-amber-400">TAIPINGAI 太平人</span>，也是 <span class="text-amber-300">AITAIPING 爱太平</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-emerald-100/90 max-w-xl mx-auto">
+        拒绝乱开价“砍菜头”。先用 AI 算准太平街坊公道价，再叫知根知底的实名老师傅上门。
+      </p>
     </div>
   </section>
 
   <!-- =====================================================================
-       MODULE 2: 核心功能一【AI 拍照/语音秒估价诊断台】(AI Diagnostic Box)
+       主内容区
        ===================================================================== -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 -mt-8 sm:-mt-10 relative z-20 space-y-12 pb-16">
+  <main class="max-w-5xl w-full mx-auto px-4 -mt-12 pb-16 space-y-12 flex-1">
 
-    <section id="module-ai-diagnostic" class="bg-white rounded-3xl shadow-xl border-2 border-emerald-900/15 p-4 sm:p-7">
-      <!-- Box Header -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+    <!-- ===================================================================
+         2. 核心功能一：【AI 拍照/语音秒估价诊断台】
+         =================================================================== -->
+    <section id="ai-box" class="bg-white rounded-3xl shadow-lg border border-slate-200/80 p-5 sm:p-7 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <div class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-900 text-xs font-extrabold px-3 py-1 rounded-full mb-1.5">
-            <span>🤖 核心功能一 · AI 拍照/语音秒估价诊断台</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900">
-            家里哪里坏了？拍张照或选一下，<span class="text-emerald-800 underline decoration-amber-400 decoration-4 underline-offset-4">AI 帮您算算太平公道价</span>
+          <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">
+            家里哪里坏了？选一下，AI 帮您算算太平公道价
           </h2>
+          <p class="text-xs text-slate-500 mt-0.5">覆盖：后廊 Aulong · 保阁亚三 Pokok Assam · 甘文丁 Kamunting · 新邦 Simpang · 太平市区</p>
         </div>
 
-        <!-- Quick Voice Input & Sample Photo Triggers -->
-        <div class="flex flex-wrap items-center gap-2">
+        <!-- 拍照与方言语音快捷按钮 -->
+        <div class="flex items-center gap-2 shrink-0">
           <button
-            id="voice-input-btn"
             type="button"
-            onclick="triggerVoiceSimulation()"
-            class="elder-btn bg-amber-100 hover:bg-amber-200 text-amber-950 border-2 border-amber-400 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            onclick="simulateVoiceInput()"
+            class="px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold cursor-pointer"
           >
-            <span>🎙️ 按一下模拟方言/语音讲病情</span>
+            🎙️ 语音讲病情
           </button>
-
           <label
-            for="photo-file-input"
-            class="elder-btn bg-emerald-900 hover:bg-emerald-800 text-amber-300 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+            for="photo-input"
+            class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold cursor-pointer"
           >
-            <span>📷 拍照 / 上传坏处照片</span>
+            📷 拍照估价
           </label>
-          <input id="photo-file-input" type="file" accept="image/*" class="hidden" onchange="handleUserPhotoUpload(event)" />
+          <input id="photo-input" type="file" accept="image/*" class="hidden" onchange="handlePhotoSelect(event)" />
         </div>
       </div>
 
-      <!-- Simulated Voice Recognition Status Banner -->
-      <div id="voice-status-banner" class="hidden mt-3 bg-amber-50 border border-amber-300 rounded-xl p-3"></div>
+      <!-- 4 个高频痛点胶囊 -->
+      <div id="capsules-container" class="grid grid-cols-2 lg:grid-cols-4 gap-2.5"></div>
 
-      <!-- STEP 1: 4 Taiping High-Frequency Pain-Point Capsules -->
-      <div class="mt-5">
-        <div class="flex items-center justify-between mb-2.5">
-          <label class="text-xs sm:text-sm font-extrabold text-slate-800">
-            第一步：选择太平家庭高频痛点类别（点击胶囊自动测算）
-          </label>
-          <button
-            type="button"
-            onclick="loadSampleCasePhoto()"
-            class="text-xs font-bold text-emerald-800 hover:text-emerald-600 underline cursor-pointer"
+      <!-- 常见具体症状选择 -->
+      <div>
+        <div class="text-xs font-bold text-slate-500 mb-2">选择具体症状（点击自动测算）：</div>
+        <div id="symptoms-container" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- 区域选择 + 补充描述（一行极简布局） -->
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-1">
+        <div class="sm:col-span-4">
+          <select
+            id="area-select"
+            onchange="changeArea(this.value)"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-bold text-slate-800 focus:outline-none focus:border-emerald-700"
           >
-            ✨ 没照片？点此载入太平真实案例照体验 AI 识别
-          </button>
+            <option value="aulong">📍 Aulong 后廊</option>
+            <option value="pokok_assam">📍 Pokok Assam 保阁亚三</option>
+            <option value="kamunting">📍 Kamunting 甘文丁</option>
+            <option value="simpang">📍 Simpang 新邦</option>
+            <option value="taiping_town">📍 Taiping Town 太平市区</option>
+          </select>
         </div>
-
-        <div id="pain-capsules-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
-          <!-- Populated by app.js -->
+        <div class="sm:col-span-8">
+          <input
+            id="custom-note-input"
+            type="text"
+            oninput="handleNoteInput(this.value)"
+            placeholder="补充简短描述（选填，例如：下午下大雨就跳电 / 水箱漏水）..."
+            class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-emerald-700"
+          />
         </div>
       </div>
 
-      <!-- Photo Attachment / AI Vision Scan Preview Container -->
-      <div id="photo-preview-container" class="hidden mt-4"></div>
+      <!-- AI 诊断报告与公道价输出卡片 -->
+      <div id="ai-output-card"></div>
+    </section>
 
-      <!-- STEP 2 & 3: Area Selection + Quick Symptom Tags + Description Input -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-5 pt-4 border-t border-slate-100">
-        <!-- Left 5 Cols: Taiping Neighborhood Selector -->
-        <div class="lg:col-span-5 flex flex-col justify-between bg-emerald-50/60 p-4 rounded-2xl border border-emerald-200/80">
-          <div>
-            <label for="taiping-area-select" class="block text-xs sm:text-sm font-extrabold text-emerald-950 mb-1.5">
-              第二步：选择所在太平区域（新村 / 花园 Taman）
-            </label>
-            <select
-              id="taiping-area-select"
-              onchange="handleAreaChange(this.value)"
-              class="w-full rounded-xl border-2 border-emerald-700/40 bg-white px-3.5 py-2.5 text-sm sm:text-base font-bold text-slate-900 focus:outline-none focus:border-emerald-800 shadow-sm"
-            >
-              <option value="aulong">📍 Aulong 后廊（后廊新村 / Taman Pertama）</option>
-              <option value="pokok_assam">📍 Pokok Assam 保阁亚三（保阁亚三新村 / 巴刹）</option>
-              <option value="kamunting">📍 Kamunting 甘文丁（Taman Kamunting / 工业区）</option>
-              <option value="simpang">📍 Simpang 新邦（Taman Simpang / 丰亿花园）</option>
-              <option value="taiping_town">📍 Taiping Town 太平市区（太平湖 / 敏路 / 都拜）</option>
-            </select>
-          </div>
+    <!-- ===================================================================
+         3. 核心功能二：【太平认证匠人红榜 & Rating 系统】
+         =================================================================== -->
+    <section id="sifu-section" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-xl font-extrabold text-slate-900">太平认证匠人红榜</h2>
+          <p class="text-xs text-slate-500">实名与手艺认证 · 包公道不乱开价 · 官方保修 30 天</p>
+        </div>
+        <div id="sifu-tabs" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar"></div>
+      </div>
 
-          <div id="area-local-hint" class="mt-3 text-xs text-slate-700 bg-white/90 p-3 rounded-xl border border-emerald-200 leading-relaxed elder-scale-text">
-            <!-- Populated by app.js -->
-          </div>
+      <div id="sifu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ===================================================================
+         4. 核心功能四：【太平游子安心专区 & 3D打印复活老物件】（极简双卡 Bento）
+         =================================================================== -->
+    <section id="moat-section" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+      <!-- 左卡：游子孝心通道 -->
+      <div class="bg-emerald-950 text-white rounded-3xl p-6 flex flex-col justify-between space-y-5">
+        <div class="space-y-2">
+          <span class="text-xs font-extrabold bg-amber-400 text-emerald-950 px-2.5 py-1 rounded-full">
+            💝 太平游子孝心通道
+          </span>
+          <h3 class="text-xl font-extrabold pt-1">
+            人在 KL / 新加坡 / 槟城？替太平爸妈一键叫师傅
+          </h3>
+          <p class="text-xs text-emerald-100/90 leading-relaxed">
+            爸妈只管开门，<strong>师傅绝不向老人家收现金</strong>。修好后拍 15 秒验收视频发您 WhatsApp 确认后，您再线上过账（支持 TnG / DuitNow / PayNow）。
+          </p>
         </div>
 
-        <!-- Right 7 Cols: Quick Symptom Tags & Custom Description -->
-        <div class="lg:col-span-7 flex flex-col justify-between bg-slate-50 p-4 rounded-2xl border border-slate-200/90">
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label for="ai-desc-input" class="text-xs sm:text-sm font-extrabold text-slate-800">
-                第三步：点选常见症状或输入简短描述（长辈免打字可直接点标签）
-              </label>
-              <span class="text-[11px] text-emerald-800 font-bold">实时重算公道价</span>
+        <div class="space-y-2.5">
+          <div class="bg-white/10 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div>
+              <div class="font-bold text-sm text-white">父母老屋全屋水电安全体检</div>
+              <div class="text-xs text-emerald-200">查电箱防漏电 + 热水器 + 屋顶水箱 + 视频汇报</div>
             </div>
-
-            <!-- Quick Symptom Pills -->
-            <div id="quick-symptoms-bar" class="flex flex-wrap gap-1.5 mb-3">
-              <!-- Populated by app.js -->
-            </div>
-
-            <textarea
-              id="ai-desc-input"
-              rows="2"
-              oninput="runAiValuation(false)"
-              placeholder="请简短描述问题，例如：下午下大雨家里电箱跳掣、屋顶水箱满水漏不停、或者老风扇旋钮断了..."
-              class="w-full rounded-xl border border-slate-300 bg-white p-3 text-sm sm:text-base text-slate-800 focus:outline-none focus:border-emerald-700 elder-scale-text"
-            ></textarea>
-          </div>
-
-          <div class="flex items-center justify-between gap-2 mt-3">
-            <span class="text-[11px] text-slate-500">
-              💡 支持华语、福建话口语词汇（如 Tangki、跳掣、水喉、电箱）
-            </span>
             <button
               type="button"
-              onclick="runAiValuation(true)"
-              class="bg-emerald-900 hover:bg-emerald-800 text-amber-300 font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl shadow cursor-pointer shrink-0"
+              onclick="quickBookFilial('electrical', '【游子代订】父母老屋全屋水电安全体检 (一口价 RM68)')"
+              class="bg-amber-400 hover:bg-amber-300 text-emerald-950 font-extrabold text-xs px-3 py-2 rounded-xl shrink-0 cursor-pointer"
             >
-              ⚡ 立即刷新 AI 估价报告
+              RM 68 预约
+            </button>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div>
+              <div class="font-bold text-sm text-white">2架冷气除菌拆洗 + 免费查电箱</div>
+              <div class="text-xs text-emerald-200">拆洗风轮防滴水，绝不向长辈推销加Gas</div>
+            </div>
+            <button
+              type="button"
+              onclick="quickBookFilial('aircond', '【游子代订】2架冷气除菌拆洗+免费查电箱 (团购价 RM150)')"
+              class="bg-amber-400 hover:bg-amber-300 text-emerald-950 font-extrabold text-xs px-3 py-2 rounded-xl shrink-0 cursor-pointer"
+            >
+              RM 150 预约
             </button>
           </div>
         </div>
       </div>
 
-      <!-- INSTANT AI DIAGNOSTIC & FAIR PRICE OUTPUT PANEL -->
-      <div id="ai-result-panel" class="mt-6">
-        <!-- Populated dynamically by app.js -->
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         MODULE 3: 核心功能二【太平认证匠人红榜 & Rating 系统】(Verified Sifu Directory)
-         =================================================================== -->
-    <section id="module-sifu-directory" class="space-y-5">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-950 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full mb-1.5">
-            <span>🏆 核心功能二 · 太平实名认证匠人红榜 & 街坊口碑评级</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">
-            找回太平老街坊的人情味：<span class="text-emerald-800">知根知底、明码实价的好师傅</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1 elder-scale-text">
-            每位红榜师傅均通过大马身份证实名认证、太平街坊邻居担保，签署《不乱开价·30天免费保修公约》。
+      <!-- 右卡：3D打印复活老物件实验室 -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between space-y-5 shadow-sm">
+        <div class="space-y-2">
+          <span class="text-xs font-extrabold bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded-full">
+            🖨️ 3D打印复活老物件实验室
+          </span>
+          <h3 class="text-xl font-extrabold text-slate-900 pt-1">
+            老屋奇葩零件停产买不到？3D打印几十块救回来
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            老一辈的日本风扇、老排屋马桶水箱用料扎实，只因断了一粒塑料件就被迫花几百块换新。我们用高强度工程塑料 1:1 复刻安装。
           </p>
         </div>
 
-        <!-- Area Filter & Search Box -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-          <select
-            onchange="handleSifuAreaFilter(this.value)"
-            class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 focus:outline-none focus:border-emerald-700"
-          >
-            <option value="all">📍 全部太平常驻区域 (可跨区上门)</option>
-            <option value="aulong">常驻：Aulong 后廊</option>
-            <option value="pokok_assam">常驻：Pokok Assam 保阁亚三</option>
-            <option value="kamunting">常驻：Kamunting 甘文丁</option>
-            <option value="simpang">常驻：Simpang 新邦</option>
-            <option value="taiping_town">常驻：Taiping Town 太平市区</option>
-          </select>
-
-          <input
-            type="search"
-            placeholder="🔍 搜师傅名字、福建话、手艺..."
-            oninput="handleSifuSearch(this.value)"
-            class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:border-emerald-700"
-          />
-        </div>
-      </div>
-
-      <!-- Category Filter Pills -->
-      <div id="sifu-category-tabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-        <!-- Populated by app.js -->
-      </div>
-
-      <!-- Sifu Cards Grid -->
-      <div id="sifu-directory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Populated by app.js -->
-      </div>
-    </section>
-
-    <!-- ===================================================================
-         MODULE 5: 核心功能四【太平游子安心专区 & 3D打印复活老物件】(特色护城河)
-         =================================================================== -->
-    <section id="module-filial-and-3d" class="space-y-10">
-
-      <!-- PART A: 太平游子孝心通道 (Filial Peace-of-Mind Channel) -->
-      <div class="rounded-3xl bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white p-5 sm:p-8 shadow-xl border-2 border-amber-400/50 relative overflow-hidden">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/15">
-          <div class="max-w-2xl">
-            <div class="inline-flex items-center gap-2 bg-amber-400 text-emerald-950 text-xs font-black px-3 py-1 rounded-full mb-2">
-              <span>💝 特色护城河一 · 太平游子孝心远程代订通道</span>
+        <div class="space-y-2.5">
+          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div>
+              <div class="font-bold text-sm text-slate-900">70/80年代 KDK / National 老风扇旋钮齿轮</div>
+              <div class="text-xs text-slate-500">免花 RM250 买新扇 · 耐扭 PETG 强化打印</div>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-              人在 KL、新加坡、槟城打拼？<br class="hidden sm:inline" />
-              <span class="text-amber-300">爸妈家里坏东西，您在线下单，我们修好拍视频向您汇报！</span>
-            </h2>
-            <p class="text-xs sm:text-sm text-emerald-100 mt-2 leading-relaxed elder-scale-text">
-              太平很多老爸老妈怕孩子破费，家里水龙头漏水用布绑、电箱跳电自己摸黑推、冷气滴水拿水桶接。通过游子孝心通道，<strong>师傅上门绝不向老人家收一分钱现金</strong>，修好后录制 15 秒验收视频发您 WhatsApp 满意后才线上付款！
-            </p>
+            <button
+              type="button"
+              onclick="quickBook3D('老式 KDK/National 风扇旋钮/齿轮断了，预约 3D 打印配回')"
+              class="bg-emerald-900 hover:bg-emerald-800 text-white font-bold text-xs px-3 py-2 rounded-xl shrink-0 cursor-pointer"
+            >
+              RM 25起 定制
+            </button>
           </div>
 
-          <!-- Currency Switcher for SG / MY Outstation Children -->
-          <div class="bg-emerald-950/90 border border-amber-400/40 rounded-2xl p-3.5 shrink-0 self-start lg:self-center">
-            <div class="text-[11px] text-amber-200 font-bold mb-2">🌏 游子所在地区币种直算：</div>
-            <div class="flex items-center gap-1.5 bg-white/10 p-1 rounded-xl">
-              <button
-                id="curr-btn-myr"
-                type="button"
-                onclick="setCurrencyMode('MYR')"
-                class="px-3 py-1.5 rounded-lg text-xs font-extrabold bg-amber-400 text-emerald-950 shadow cursor-pointer"
-              >
-                🇲🇾 吉隆坡/槟城 (RM)
-              </button>
-              <button
-                id="curr-btn-sgd"
-                type="button"
-                onclick="setCurrencyMode('SGD')"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-100 hover:text-white cursor-pointer"
-              >
-                🇸🇬 新加坡游子 (SGD$)
-              </button>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+            <div>
+              <div class="font-bold text-sm text-slate-900">老排屋绝版高水箱阀芯 / 马桶异形按掣</div>
+              <div class="text-xs text-slate-500">免花 RM600 敲砖换马桶 · 防水工程 ABS 定制</div>
             </div>
-          </div>
-        </div>
-
-        <!-- 3-Step Filial Guarantee Workflow -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-5">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
-            <span class="w-7 h-7 rounded-full bg-amber-400 text-emerald-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-            <div class="text-xs">
-              <div class="font-extrabold text-amber-300 text-sm">游子在线一键派单</div>
-              <p class="text-emerald-100 mt-0.5">填写太平爸妈所在花园/新村，客服会提前用福建话/华语温和联系长辈约定开门时间。</p>
-            </div>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
-            <span class="w-7 h-7 rounded-full bg-amber-400 text-emerald-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-            <div class="text-xs">
-              <div class="font-extrabold text-amber-300 text-sm">绝不向老人家收现金</div>
-              <p class="text-emerald-100 mt-0.5">严禁师傅向长辈推销额外零件或索取现金，消除爸妈“怕花钱不敢修”的心理负担。</p>
-            </div>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3">
-            <span class="w-7 h-7 rounded-full bg-amber-400 text-emerald-950 font-black text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-            <div class="text-xs">
-              <div class="font-extrabold text-amber-300 text-sm">15秒视频汇报 + 30天保修</div>
-              <p class="text-emerald-100 mt-0.5">修好后拍前后对比照与15秒测试视频发您 WhatsApp，支持 TnG / DuitNow / PayNow 结算。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Filial Care Packages Grid -->
-        <div id="filial-packages-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Populated by app.js -->
-        </div>
-      </div>
-
-      <!-- PART B: 3D打印复活老物件实验室 (Taiping 3D Print Legacy Parts Lab) -->
-      <div id="module-3d-lab" class="bg-gradient-to-br from-amber-50 via-white to-emerald-50/60 rounded-3xl p-5 sm:p-8 border-2 border-amber-500/30 shadow-md">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-          <div>
-            <div class="inline-flex items-center gap-1.5 bg-emerald-900 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full mb-2">
-              <span>🖨️ 特色护城河二 · AITAIPING 3D打印复活老物件实验室</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900">
-              老屋奇葩零件停产买不到？<span class="text-emerald-800">别整台丢掉，我们用 3D 打印帮它续命 10 年！</span>
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl elder-scale-text">
-              太平许多 70–90 年代排屋与古迹老店屋里的 KDK 老铁扇、绝版陶瓷水箱、木百叶窗用料扎实，只因断了一粒停产塑料件就被迫花几百块换新。我们用游标卡尺精准测绘 + 工业级耐温 PETG / 尼龙打印，几十块帮街坊保住老物件！
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onclick="selectPainCategory('legacy3d'); document.getElementById('module-ai-diagnostic').scrollIntoView({behavior: 'smooth'});"
-            class="elder-btn bg-amber-500 hover:bg-amber-400 text-emerald-950 font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow cursor-pointer shrink-0 self-start md:self-auto"
-          >
-            📷 拍下你家断掉的老零件去估价 →
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-          <!-- Left 5 Cols: 3D Legacy Case Selector Tabs -->
-          <div id="legacy-3d-tabs" class="lg:col-span-5 flex flex-col gap-3">
-            <!-- Populated by app.js -->
-          </div>
-
-          <!-- Right 7 Cols: Selected 3D Legacy Case Breakdown -->
-          <div id="legacy-3d-detail" class="lg:col-span-7">
-            <!-- Populated by app.js -->
+            <button
+              type="button"
+              onclick="quickBook3D('老排屋绝版马桶水箱配件断裂，预约 3D 打印定制修复')"
+              class="bg-emerald-900 hover:bg-emerald-800 text-white font-bold text-xs px-3 py-2 rounded-xl shrink-0 cursor-pointer"
+            >
+              RM 35起 定制
+            </button>
           </div>
         </div>
       </div>
 
     </section>
+
   </main>
 
   <!-- =====================================================================
-       FOOTER (底部太平社区温度宣言)
+       极简页脚
        ===================================================================== -->
-  <footer class="bg-emerald-950 text-emerald-200 border-t-4 border-amber-400 py-10 mt-auto">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div class="space-y-2 max-w-xl">
-        <div class="flex items-center gap-2">
-          <span class="font-black text-lg text-white">TAIPING<span class="text-amber-400">AI</span> 太平人</span>
-          <span class="text-amber-400">×</span>
-          <span class="font-black text-lg text-amber-300">AI<span class="text-white">TAIPING</span> 爱太平</span>
-        </div>
-        <p class="text-xs text-emerald-200/80 leading-relaxed">
-          专为马来西亚霹雳州太平（Taiping, Perak 34000 / 34600 / 34700）打造的社区水电家居维护与匠人公道评级平台。服务覆盖：后廊 Aulong、保阁亚三 Pokok Assam、甘文丁 Kamunting、新邦 Simpang、太平市区 Taiping Town、都拜 Tupai。
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onclick="openBookingModal('auto', false)"
-          class="bg-amber-400 hover:bg-amber-300 text-emerald-950 font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow cursor-pointer"
-        >
-          📲 呼叫 AITAIPING 官方调度台
-        </button>
-        <button
-          type="button"
-          onclick="toggleElderMode()"
-          class="bg-emerald-900 hover:bg-emerald-800 text-amber-200 border border-amber-400/40 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl cursor-pointer"
-        >
-          👓 切换长辈大字版
-        </button>
-      </div>
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span class="font-bold text-slate-700">TAIPINGAI 太平人 · AITAIPING 爱太平</span>
+      <span>服务全太平：后廊 Aulong · 保阁亚三 Pokok Assam · 甘文丁 Kamunting · 新邦 Simpang · 太平市区</span>
     </div>
   </footer>
 
   <!-- =====================================================================
-       MODAL 1: 核心功能三【防飞单·官方担保一键呼叫闭环】(WhatsApp Concierge Modal)
+       弹窗一：核心功能三【防飞单·官方担保一键呼叫闭环】
        ===================================================================== -->
   <div
-    id="booking-modal-backdrop"
-    class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
+    id="booking-modal"
+    class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4"
     onclick="if(event.target === this) closeBookingModal()"
   >
-    <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl border-2 border-emerald-900 overflow-hidden my-auto">
-      <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-teal-900 text-white px-5 py-4 flex items-center justify-between border-b-2 border-amber-400">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl overflow-hidden">
+      <div class="bg-emerald-950 text-white px-5 py-4 flex items-center justify-between">
         <div>
-          <span class="text-[11px] text-amber-300 font-extrabold uppercase tracking-wider">🛡️ 官方防飞单 · 30天保修闭环</span>
-          <h3 class="text-base sm:text-lg font-black text-white">呼叫太平认证师傅 · 官方 WhatsApp 担保派单</h3>
+          <div class="text-[11px] text-amber-300 font-bold">🛡️ 官方担保 · 锁定公道价 · 保修30天</div>
+          <h3 class="font-extrabold text-base">预约太平师傅上门</h3>
         </div>
-        <button
-          type="button"
-          onclick="closeBookingModal()"
-          class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center cursor-pointer"
-          aria-label="关闭窗口"
-        >
-          ✕
-        </button>
+        <button type="button" onclick="closeBookingModal()" class="text-white/70 hover:text-white text-lg cursor-pointer">✕</button>
       </div>
-
-      <!-- Modal Dynamic Body -->
-      <div id="booking-modal-body" class="p-4 sm:p-6 max-h-[82vh] overflow-y-auto">
-        <!-- Populated by app.js -->
-      </div>
+      <div id="booking-modal-body" class="p-5"></div>
     </div>
   </div>
 
   <!-- =====================================================================
-       MODAL 2: 太平街坊打星评价弹窗 (Interactive Sifu Rating Modal)
+       弹窗二：给师傅打星评价
        ===================================================================== -->
   <div
-    id="rating-modal-backdrop"
-    class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
+    id="rating-modal"
+    class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4"
     onclick="if(event.target === this) closeRatingModal()"
   >
-    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border-2 border-amber-400 overflow-hidden my-auto">
-      <div class="bg-gradient-to-r from-emerald-950 to-emerald-900 text-white px-5 py-4 flex items-center justify-between border-b border-amber-400/50">
-        <div>
-          <span class="text-[11px] text-amber-300 font-extrabold uppercase tracking-wider">⭐ 太平街坊真实口碑榜</span>
-          <h3 class="text-base sm:text-lg font-black text-white">给太平师傅打星评价 · 帮街坊认证好手艺</h3>
-        </div>
-        <button
-          type="button"
-          onclick="closeRatingModal()"
-          class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center cursor-pointer"
-          aria-label="关闭窗口"
-        >
-          ✕
-        </button>
+    <div class="bg-white rounded-3xl max-w-sm w-full shadow-2xl overflow-hidden">
+      <div class="bg-emerald-950 text-white px-5 py-4 flex items-center justify-between">
+        <h3 class="font-extrabold text-base">⭐ 给太平师傅打星评价</h3>
+        <button type="button" onclick="closeRatingModal()" class="text-white/70 hover:text-white text-lg cursor-pointer">✕</button>
       </div>
-
-      <div id="rating-modal-body" class="p-4 sm:p-6 max-h-[82vh] overflow-y-auto">
-        <!-- Populated by app.js -->
-      </div>
+      <div id="rating-modal-body" class="p-5"></div>
     </div>
   </div>
 
-  <!-- =====================================================================
-       GLOBAL TOAST NOTIFICATION
-       ===================================================================== -->
+  <!-- 轻提示 Toast -->
   <div
-    id="global-toast"
-    class="hidden fixed bottom-5 right-4 left-4 sm:left-auto sm:max-w-md z-50 bg-emerald-950 text-amber-300 border-2 border-amber-400 px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 text-xs sm:text-sm font-bold transition-all duration-300 transform translate-y-4 opacity-0"
-  >
-    <span>🔔</span>
-    <span id="global-toast-text">提示信息</span>
-  </div>
+    id="toast"
+    class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg"
+  ></div>
 
-  <!-- Core Application Logic -->
   <script src="app.js"></script>
 </body>
 </html>
